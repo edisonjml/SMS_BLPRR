@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet{
 			LoginService loginService = (LoginService) applicationContext.getBean("loginService");
 		
 			loginService.updateResetAllAttempts();
-			if(!(session==null || !request.isRequestedSessionIdValid() )){
+			if(!"".equals(loginStatus)){
 				session.invalidate();
 			}
 			loginService.getLogin(request);
@@ -64,8 +64,8 @@ public class LoginServlet extends HttpServlet{
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException,ServletException{
 		
 		HttpSession session = request.getSession();
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
+		/*response.setContentType("text/html");
+		PrintWriter out = response.getWriter();*/
 		
 		String page = "";
 		try {
